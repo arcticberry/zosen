@@ -3,14 +3,18 @@ import MockExpressRequest from 'mock-express-request';
 
 import { AuthService } from '../../../src/auth/AuthService';
 import { LogMock } from '../lib/LogMock';
+import { UserRepositoryMock } from '../lib/UserRepositoryMock';
 
 describe('AuthService', () => {
 
     let authService: AuthService;
     let log: LogMock;
+    let userRepository: UserRepositoryMock
+
     beforeEach(() => {
         log = new LogMock();
-        authService = new AuthService(log, {} as any);
+        userRepository = new UserRepositoryMock()
+        authService = new AuthService(log, userRepository);
     });
 
     describe('parseTokenFromRequest', () => {
@@ -45,7 +49,19 @@ describe('AuthService', () => {
             expect(token).toBeUndefined();
             expect(log.infoMock).toBeCalledWith('No credentials provided by the client', []);
         });
-
     });
 
+    describe('Validate user credentials', () => {
+        test('Should return the credentials of the user', () => {
+            const credentials = { username: 'admin', password: 'secret' };
+
+            const validatedUserData = authService.validateUser(credentials.username, credentials.password);
+            expect(credentials).toEqual(validatedUserData);
+        })
+
+        test('Should return undefined', () => {
+            const validateUser = authService.validateUser('', '');
+            expect(validateUser).toBeUndefined();
+        })
+    })
 });
