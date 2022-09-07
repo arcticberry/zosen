@@ -161,14 +161,9 @@ The swagger and the monitor route can be altered in the `.env` file.
 | **src/api/errors/**               | Custom HttpErrors like 404 NotFound |
 | **src/api/interceptors/**         | Interceptors are used to change or replace the data returned to the client. |
 | **src/api/middlewares/**          | Express Middlewares like helmet security features |
-| **src/api/models/**               | TypeORM Models |
-| **src/api/repositories/**         | Repository / DB layer |
 | **src/api/services/**             | Service layer |
 | **src/api/subscribers/**          | Event subscribers |
 | **src/api/validators/**           | Custom validators, which can be used in the request classes |
-| **src/api/resolvers/**            | GraphQL resolvers (query, mutation & field-resolver) |
-| **src/api/types/**                | GraphQL types ,input-types and scalar types |
-| **src/api/** schema.gql           | Generated GraphQL schema |
 | **src/auth/**                     | Authentication checkers and services |
 | **src/core/**                     | The core features like logger and env variables |
 | **src/decorators/**               | Custom decorators like @Logger & @EventDispatch |
@@ -177,7 +172,7 @@ The swagger and the monitor route can be altered in the `.env` file.
 | **src/types/** *.d.ts             | Custom type definitions and files that aren't on DefinitelyTyped |
 | **test**                          | Tests |
 | **test/e2e/** *.test.ts           | End-2-End tests (like e2e) |
-| **test/integration/** *.test.ts   | Integration test with SQLite3 |
+| **test/integration/** *.test.ts   | Integration test |
 | **test/unit/** *.test.ts          | Unit tests |
 | .env.example                      | Environment configurations |
 | .env.test                         | Test environment configurations |
