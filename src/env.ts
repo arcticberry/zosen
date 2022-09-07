@@ -23,6 +23,8 @@ export const env = {
         name: getOsEnv('APP_NAME'),
         version: (pkg as any).version,
         description: (pkg as any).description,
+        username: getOsEnv('APP_USERNAME'),
+        password: getOsEnv('APP_PASSWORD'),
         host: getOsEnv('APP_HOST'),
         schema: getOsEnv('APP_SCHEMA'),
         routePrefix: getOsEnv('APP_ROUTE_PREFIX'),

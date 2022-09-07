@@ -1,12 +1,14 @@
 import * as express from 'express';
 import { Service } from 'typedi';
 import { Logger, LoggerInterface } from '../decorators/Logger';
+import { UserRepositoryDecorator, UserRepositoryInterface } from '../decorators/UserRepository';
 
 @Service()
 export class AuthService {
 
     constructor(
-        @Logger(__filename) private log: LoggerInterface
+        @Logger(__filename) private log: LoggerInterface,
+        @UserRepositoryDecorator() private userRepository: UserRepositoryInterface
     ) { }
 
     public parseBasicAuthFromRequest(req: express.Request): { username: string, password: string } {
@@ -26,8 +28,10 @@ export class AuthService {
         return undefined;
     }
 
-    public async validateUser(username: string, password: string): Promise<{}> {
-        return {};
+    public validateUser(username: string, password: string): { username: string, password: string } | undefined {
+        const user = this.userRepository.compareCredentials(username, password)
+
+        return user
     }
 
 }
