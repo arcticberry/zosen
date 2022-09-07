@@ -4,9 +4,9 @@ export default class UserRepository implements UserRepositoryInterface {
     constructor() {}
 
     public compareCredentials (username, password) {
-        if (username != env.app.username || password != env.app.password) return undefined;
+        const credentialsValid = username === env.app.username && password === env.app.password
 
-        return { username, password };
+        return credentialsValid ? { username, password }: undefined;
     }
 }
 
